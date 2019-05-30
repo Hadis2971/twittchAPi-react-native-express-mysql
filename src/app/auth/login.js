@@ -2,16 +2,22 @@ import React, { PureComponent } from 'react';
 import { View, Text, Button, TouchableOpacity } from 'react-native';
 import { Formik } from 'formik';
 import { MyInput, Form } from '../../common/userInput';
-
+import validationSchema from '../../validation/login';
 import styles from '../../styles/login';
 
 class Login extends PureComponent {
+
+  handleLoginSubmit = (values) => {
+    console.log(values);
+  };
+
   render () {
     return (
       <View>
         <Formik
           initialValues={{ email: '', password: '' }}
-          onSubmit={values => console.log(values)}
+          validationSchema={validationSchema}
+          onSubmit={this.handleRegisterSubmit}
         >
           {props => (
             <View>
@@ -22,7 +28,7 @@ class Login extends PureComponent {
               </Form>
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('Register')}>
-                <Text style={styles.goToRegister}>Register</Text>
+                <Text style={styles.goToRegister}>Not Registred?</Text>
               </TouchableOpacity>
             </View>
           )}
