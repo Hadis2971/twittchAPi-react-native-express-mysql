@@ -18,11 +18,11 @@ export const registerSuccessUpdate = (oldState) => {
   });
 };
 
-export const registerFailUpdate = (oldState, action) => {
+export const registerFailUpdate = (oldState, errors) => {
   return updateObject(oldState, {
     registerUserStart: false,
     registerUserSuccess: false,
     registerUserFail: true,
-    errors: action.errors
+    errors: errors
   });
 };

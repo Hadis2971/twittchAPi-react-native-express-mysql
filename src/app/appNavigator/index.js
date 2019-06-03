@@ -1,9 +1,10 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import Register from '../auth/register';
-import Login from '../auth/login';
+import RegisterContainer from '../auth/registerContainer';
+import LoginContainer from '../auth/loginContainer';
+
 const MainNavigator = createStackNavigator({
-  Login: { screen: Login },
-  Register: { screen: Register }
+  Login: { screen: LoginContainer },
+  Register: { screen: RegisterContainer }
 });
 
 const AppNavigator = createAppContainer(MainNavigator);

@@ -1,0 +1,35 @@
+dependencies: \
+  /Users/hadismuric/Desktop/projects/test/node_modules/react-native/Libraries/Image/RCTImageViewManager.m \
+  /Users/hadismuric/Desktop/projects/test/node_modules/react-native/Libraries/Image/RCTImageViewManager.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTViewManager.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTPointerEvents.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/yoga/YGValue.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTEventDispatcher.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/UIView+React.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTComponent.h \
+  /Users/hadismuric/Desktop/projects/test/node_modules/react-native/Libraries/Image/RCTImageLoader.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTResizeMode.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestHandler.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestDelegate.h \
+  /Users/hadismuric/Desktop/projects/test/node_modules/react-native/Libraries/Image/RCTImageShadowView.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTShadowView.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTLayout.h \
+  /Users/hadismuric/Desktop/projects/test/ios/build/test/Build/Products/Debug-iphonesimulator/include/React/RCTRootView.h \
+  /Users/hadismuric/Desktop/projects/test/node_modules/react-native/Libraries/Image/RCTImageView.h
