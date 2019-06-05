@@ -5,7 +5,13 @@ export const loginStartUpdate = (oldState) => {
     loginUserStart: true,
     loginUserSuccess: false,
     loginUserFail: false,
-    user: null
+    token: null,
+    userID: '',
+    userEmail: '',
+    username: '',
+    firstName: '',
+    lastName: '',
+    errors: null
   });
 };
 
@@ -14,15 +20,26 @@ export const loginSuccessUpdate = (oldState, user) => {
     loginUserStart: false,
     loginUserSuccess: true,
     loginUserFail: false,
-    user: user
+    userID: user.userID,
+    userEmail: user.userEmail,
+    username: user.username,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    token: user.token
+
   });
 };
 
-export const loginFailUpdate = (oldState) => {
+export const loginFailUpdate = (oldState, errros) => {
   return updateObject(oldState, {
     loginUserStart: false,
     loginUserSuccess: false,
     loginUserFail: true,
-    user: null
+    userID: '',
+    userEmail: '',
+    username: '',
+    firstName: '',
+    lastName: '',
+    errors: errros
   });
 };

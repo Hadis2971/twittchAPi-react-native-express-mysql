@@ -5,6 +5,12 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../../database/models').User;
 
 class AuthApis {
+  static async hashNewUserPassword (password) {
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
+    return hash;
+  }
+
   static async _checkUserPasswordForLogin (password, hash) {
     const passwordMatch = await bcrypt.compare(password, hash);
     return passwordMatch;

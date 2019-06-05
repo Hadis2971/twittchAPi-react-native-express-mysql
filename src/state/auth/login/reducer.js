@@ -11,8 +11,9 @@ const loginReducer = (state = initialState, action) => {
       return reducerMethods.loginSuccessUpdate(state, action.user);
     }
     case (types.LOGIN_USER_FAIL): {
-      return reducerMethods.loginFailUpdate(state);
+      return reducerMethods.loginFailUpdate(state, action.errors);
     }
+    default: return state;
   }
 };
 

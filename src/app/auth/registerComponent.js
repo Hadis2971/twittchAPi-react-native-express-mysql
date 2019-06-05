@@ -1,27 +1,78 @@
 import React, { PureComponent } from 'react';
 import { View, Text, Button, TouchableOpacity } from 'react-native';
 import { Formik } from 'formik';
-import { MyInput, Form } from '../../common/userInput';
+import { MyInput, Form } from '../common/userInput';
+import Spinner from 'react-native-loading-spinner-overlay';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import validationSchema from '../../validation/register';
 import styles from '../../styles/register';
-
-
+import spinnerStyles from '../../styles/spinner';
+import alertStyle from '../../styles/alert';
+import { turnObjectIntoArray } from '../../helpers';
 
 class RegisterComponent extends PureComponent {
+  constructor (props) {
+    super(props);
+    this.state = {
+      showAlert: false
+    }
+  }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        showAlert: true
+      });
+    }
+  }
 
-  handleRegisterSubmit = (values) => {
+  hideAlert = () => {
+    this.setState({
+      showAlert: false
+    });
+  }
+
+  handleRegisterUserSubmit = async (values, { resetForm }) => {
     const { registerUser } = this.props.actions;
-    registerUser(values);
+    const registerUserSuccess = await registerUser(values);
+    if (registerUserSuccess) {
+      resetForm();
+      this.props.navigation.navigate('Login');
+    }
   };
 
   render () {
+    const { showAlert } = this.state;
+    const { registerUserStart, errors } = this.props;
     return (
       <View>
+        <Spinner 
+          visible={registerUserStart}
+          textContent={'Please Wait...'}
+          textStyle={spinnerStyles.spinnerTextStyle}
+        />
+        {showAlert && 
+        <View style={alertStyle.container}>
+        <AwesomeAlert
+            show={showAlert}
+            showProgress={false}
+            title="Register Error"
+            message={turnObjectIntoArray(errors)}
+            closeOnTouchOutside={true}
+            closeOnHardwareBackPress={false}
+            showCancelButton={false}
+            showConfirmButton={true}
+            confirmText="OK"
+            confirmButtonColor="#DD6B55"
+            onConfirmPressed={() => {
+              this.hideAlert();
+            }}
+          />
+        </View>}
         <Formik
-          initialValues={{ firstName: '', lastName: '', email: '', password: '', password2: '' }}
+          initialValues={{ firstName: '', lastName: '', email: '', username: '', password: '', password2: '' }}
           validationSchema={validationSchema}
-          onSubmit={this.handleRegisterSubmit}
+          onSubmit={this.handleRegisterUserSubmit}
         >
           {props => (
             <View>

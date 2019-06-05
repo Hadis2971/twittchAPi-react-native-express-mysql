@@ -4,15 +4,17 @@ import authApis from '../../../api/auth/authApis';
 export const registerUser = (user) => async (dispatch) => {
   dispatch({ type: types.REGISTER_USER_START });
   const registerUserResult = await authApis.registerUser(user);
-  console.log(`inside register user act cre registerUserResult ${registerUserResult}`);
+  console.log(registerUserResult);
   if ((!registerUserResult) || registerUserResult.data.Error) {
     dispatch({
       type: types.REGISTER_USER_FAIL,
-      errors: registerUserResult.data.Error || 'Register Error Please Try Again Later'
+      errors: registerUserResult.data.Error || 'Something Went Wrong Try Again Later'
     });
+    return false;
   } else {
     dispatch({
       type: types.REGISTER_USER_SUCCESS
     });
+    return true;
   }
 };

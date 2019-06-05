@@ -1,14 +1,8 @@
-import bcrypt from 'bcryptjs';
+import AuthApis from './authAPI';
 const User = require('../../database/models').User;
 class AuthService {
-  static async _hashNewUserPassword (password) {
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(password, salt);
-    return hash;
-  }
-
   static async _creteNewUser (user) {
-    const hashedPassword = await this._hashNewUserPassword(user.password);
+    const hashedPassword = await AuthApis.hashNewUserPassword(user.password);
     user.password = hashedPassword;
     try {
       const newUser = await User.create(user);
