@@ -9,7 +9,6 @@ class ProfileApis {
     try {
       const config = await configFactory(this.baseUrl, data);
       const updateUserProfileResult = await Network.post(config);
-      console.log(`Inside updateUserProfile result => ${updateUserProfileResult}`);
       return updateUserProfileResult;
     } catch (error) {
       console.log(`Error in updateUserProfile => ${error}`);

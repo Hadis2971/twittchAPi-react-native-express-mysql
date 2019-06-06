@@ -5,12 +5,13 @@ export const loginStartUpdate = (oldState) => {
     loginUserStart: true,
     loginUserSuccess: false,
     loginUserFail: false,
-    token: null,
     userID: '',
     userEmail: '',
     username: '',
     firstName: '',
     lastName: '',
+    token: null,
+    refershtoken: null,
     errors: null
   });
 };
@@ -25,8 +26,9 @@ export const loginSuccessUpdate = (oldState, user) => {
     username: user.username,
     firstName: user.firstName,
     lastName: user.lastName,
-    token: user.token
-
+    token: user.token,
+    refershtoken: user.refershtoken,
+    errors: null
   });
 };
 
@@ -40,6 +42,8 @@ export const loginFailUpdate = (oldState, errros) => {
     username: '',
     firstName: '',
     lastName: '',
+    token: null,
+    refershtoken: null,
     errors: errros
   });
 };

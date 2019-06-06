@@ -1,5 +1,6 @@
 import AuthApis from './authAPI';
 const User = require('../../database/models').User;
+
 class AuthService {
   static async _creteNewUser (user) {
     const hashedPassword = await AuthApis.hashNewUserPassword(user.password);

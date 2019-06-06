@@ -8,6 +8,7 @@ const initialState = {
   firstName: '',
   lastName: '',
   token: null,
+  refershtoken: null,
   errors: null
 };
 

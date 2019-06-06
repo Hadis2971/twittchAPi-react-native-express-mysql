@@ -27,9 +27,14 @@ export const removeUserDataFromAsyncStorage = async () => {
   console.log(`inside removeUserDataToAsyncStorage AsyncStorage => ${AsyncStorage}`);
 };
 
-export const getTokenFromAsyncStorage = async () => {
+export const getAuthToken = async () => {
   const token = await AsyncStorage.getItem('token');
   return token;
+};
+
+export const getRefreshToken = async () => {
+  const refershtoken = await AsyncStorage.getItem('refershtoken');
+  return refershtoken;
 };
 
 export const createPorfileUpdateObject = (data) => {

@@ -13,3 +13,4 @@ export const databseConfig = {
 };
 
 export const secretForAuthToken = process.env.SECRET_FOR_AUTH_TOKEN;
+export const secretForRefreshToken = process.env.SECRET_FOR_REFRESH_TOKEN;

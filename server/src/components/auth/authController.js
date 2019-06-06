@@ -2,11 +2,13 @@ import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import AuthService from './authService';
 import AuthApis from './authAPI';
+import RefreshTokenService from './refreshTokenService';
 import { secretForAuthToken } from '../../config';
 import registerNewUserInputValidator from '../../validation/registerNewUser';
 import sanitizerRegisterNewUserInput from '../../sanitize/registerNewUser';
 import loginValidator from '../../validation/login';
 import sanitizerLoginUserInput from '../../sanitize/login';
+
 class AuthController {
   static async registerNewUserController (req, res, next) {
     try {
@@ -56,7 +58,6 @@ class AuthController {
       }
       req.login(user, { session: false }, async (error) => {
         if (error) {
-          console.log(error);
           next(error);
         }
 
@@ -69,7 +70,8 @@ class AuthController {
         };
 
         const token = await AuthApis.generateAuthToken(tokenPayload);
-        return res.json({ token });
+        const refershtoken = await RefreshTokenService.checkIfRefreshTokenIsValid(user.id);
+        return res.json({ token, refershtoken });
       });
     })(req, res);
   }
@@ -97,20 +99,30 @@ class AuthController {
     if (token) {
       jwt.verify(token, secretForAuthToken, (err, decoded) => {
         if (err) {
-          return res.json({
-            success: false,
-            message: 'Token is not valid'
-          });
+          if (req.headers['refreshtoken']) {
+            jwt.verify(token, req.headers['refreshtoken'], async (error, decoded) => {
+              if (error) {
+                const tokenPayload = await jwt.decode(token);
+                const refershtoken = await RefreshTokenService.checkIfRefreshTokenIsValid(tokenPayload.userID);
+                if (refershtoken) {
+                  const newToken = await jwt.sign(tokenPayload, req.headers['refreshtoken'], { expiresIn: 3600 });
+                  return res.json({ newToken, refershtoken });
+                } else {
+                  res.send(`<h1>Something is fishy about you hmmmmm.......</h1>`);
+                }
+              } else {
+                req.decode = decoded;
+                next();
+              }
+            });
+          }
         } else {
           req.decoded = decoded;
           next();
         }
       });
     } else {
-      return res.json({
-        success: false,
-        message: 'Auth token is not supplied'
-      });
+      return res.send(`<h1>Please Sign In First</h1>`);
     }
   }
 }

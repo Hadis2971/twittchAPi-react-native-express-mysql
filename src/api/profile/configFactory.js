@@ -1,10 +1,10 @@
-import { getTokenFromAsyncStorage } from '../../helpers';
+import { getAuthToken, getRefreshToken } from '../../helpers';
 
 const config = async (url, data) => {
   return {
     url,
-    token: await getTokenFromAsyncStorage(),
-    refreshtoken: null,
+    token: await getAuthToken(),
+    refreshtoken: await getRefreshToken(),
     data
   };
 };

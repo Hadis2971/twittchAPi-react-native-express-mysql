@@ -6,6 +6,38 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
+		<key>D09DE076-6385-40C7-8644-4BFF88671D12</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>D09DE076-6385-40C7-8644-4BFF88671D12.xcactivitylog</string>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>test project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>test</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project test with scheme test and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>581496527.595047</real>
+			<key>timeStoppedRecording</key>
+			<real>581496530.32081699</real>
+			<key>title</key>
+			<string>Building project test with scheme test and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>D09DE076-6385-40C7-8644-4BFF88671D12</string>
+		</dict>
 		<key>D2329C9D-91B6-4141-A653-FBDD6AF2650A</key>
 		<dict>
 			<key>className</key>
@@ -37,38 +69,6 @@
 			<string>Building project test with scheme test and configuration Debug</string>
 			<key>uniqueIdentifier</key>
 			<string>D2329C9D-91B6-4141-A653-FBDD6AF2650A</string>
-		</dict>
-		<key>F96C898B-3660-41E4-AF28-AF2F98B12A02</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>F96C898B-3660-41E4-AF28-AF2F98B12A02.xcactivitylog</string>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>W</string>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>test project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>test</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Building project test with scheme test and configuration Debug</string>
-			<key>timeStartedRecording</key>
-			<real>581418197.56820595</real>
-			<key>timeStoppedRecording</key>
-			<real>581418199.79550695</real>
-			<key>title</key>
-			<string>Building project test with scheme test and configuration Debug</string>
-			<key>uniqueIdentifier</key>
-			<string>F96C898B-3660-41E4-AF28-AF2F98B12A02</string>
 		</dict>
 	</dict>
 </dict>
