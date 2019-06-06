@@ -46,3 +46,11 @@ export const createPorfileUpdateObject = (data) => {
   }
   return resultObject;
 };
+
+export const createRequestUrl = (type, searchTerm) => {
+  switch (type) {
+    case 'streams': {
+      return `streams?query=${searchTerm}`;
+    }
+  }
+};
