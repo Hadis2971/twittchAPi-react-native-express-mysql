@@ -4,7 +4,7 @@ const router = require('express').Router();
 router.post('/register',
   AuthController.validateRegisterNewUserInput,
   AuthController.sanitizeRegisterNewUserInput,
-  AuthController.checkIfUserExists,
+  AuthController.checkIfEmailAlreadyInUse,
   AuthController.registerNewUserController);
 
 router.post('/login',

@@ -16,6 +16,7 @@ export const loginUser = (user) => async (dispatch) => {
       return false;
     } else {
       const userData = await getUserDataFromAuthToken(loginUserResult.data.token);
+      userData.refreshtoken = loginUserResult.data.refreshtoken;
       userData.token = loginUserResult.data.token;
       saveUserDataToAsyncStorage(userData);
       dispatch({

@@ -7,7 +7,7 @@ class TwitchApis {
     this.baseUrl = 'https://api.twitch.tv/kraken/search/';
   }
 
-  _defaultHeaders (clientId, token) {
+  _defaultHeaders (clientId, token, refreshtoken) {
     return {
       'Client-ID': clientId,
       'authorization': token

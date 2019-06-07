@@ -2,7 +2,6 @@ import ProfileService from './profileService';
 
 class ProfileController {
   static updateUserProfile (req, res, next) {
-    console.log(req.body);
     const { userID } = req.decoded;
     const { body } = req;
     try {

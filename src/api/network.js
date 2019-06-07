@@ -1,6 +1,25 @@
 import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
 import { baseUrlForApis } from '../config';
 const axiosInstance = axios.create();
+
+axiosInstance.interceptors.response.use(async (response) => {
+  if (response.data.newToken) {
+    const rt = await AsyncStorage.getItem('refreshtoken');
+    await AsyncStorage.setItem('token', response.data.newToken);
+    const data = JSON.parse(response.config.data);
+    console.log(data);
+    return axios({
+      url: response.config.url,
+      method: response.config.method,
+      baseURL: response.config.baseURL,
+      data: data,
+      headers: Object.assign({},
+        { authorization: response.data.newToken, refreshtoken: rt })
+    });
+  }
+  return response;
+});
 
 class Network {
   _defaultHeaders (token, refreshtoken) {

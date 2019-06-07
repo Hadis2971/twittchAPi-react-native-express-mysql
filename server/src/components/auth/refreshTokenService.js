@@ -16,7 +16,8 @@ class RefreshTokenService {
 
   static checkIfRefreshTokenHasExpired (expires) {
     const now = moment().format('YYYY-MM-DD HH:mm:ss');
-    if (expires > now) {
+    const tokenExp = moment(expires).format('YYYY-MM-DD HH:mm:ss');
+    if (now > tokenExp) {
       return true;
     } else {
       return false;

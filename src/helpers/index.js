@@ -15,11 +15,15 @@ export const getUserDataFromAuthToken = async (token) => {
   return decodedAuthToken;
 };
 
-export const saveUserDataToAsyncStorage = (userData) => {
+export const saveUserDataToAsyncStorage = async (userData) => {
+  console.log(userData);
   for (let key in userData) {
     AsyncStorage.setItem(key, userData[key]);
   }
-  console.log(`inside saveUserDataToAsyncStorage AsyncStorage => ${AsyncStorage}`);
+  const a = await AsyncStorage.getItem('refreshtoken');
+  console.log(a);
+  const b = await AsyncStorage.getItem('token');
+  console.log(b);
 };
 
 export const removeUserDataFromAsyncStorage = async () => {
@@ -33,7 +37,7 @@ export const getAuthToken = async () => {
 };
 
 export const getRefreshToken = async () => {
-  const refershtoken = await AsyncStorage.getItem('refershtoken');
+  const refershtoken = await AsyncStorage.getItem('refreshtoken');
   return refershtoken;
 };
 

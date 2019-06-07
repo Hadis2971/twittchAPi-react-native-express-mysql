@@ -1,5 +1,4 @@
 import passport from 'passport';
-import jwt from 'jsonwebtoken';
 import AuthService from './authService';
 import AuthApis from './authAPI';
 import RefreshTokenService from './refreshTokenService';
@@ -10,6 +9,10 @@ import loginValidator from '../../validation/login';
 import sanitizerLoginUserInput from '../../sanitize/login';
 
 class AuthController {
+  constructor () {
+    this._createNewPayload = this._createNewPayload.bind(this);
+  }
+
   static async registerNewUserController (req, res, next) {
     try {
       const createNewUserResult = await AuthService.registerNewUser(req.body);
@@ -70,13 +73,13 @@ class AuthController {
         };
 
         const token = await AuthApis.generateAuthToken(tokenPayload);
-        const refershtoken = await RefreshTokenService.checkIfRefreshTokenIsValid(user.id);
-        return res.json({ token, refershtoken });
+        const refreshtoken = await RefreshTokenService.checkIfRefreshTokenIsValid(user.id);
+        return res.json({ token, refreshtoken: refreshtoken.refreshtoken });
       });
     })(req, res);
   }
 
-  static async checkIfUserExists (req, res, next) {
+  static async checkIfEmailAlreadyInUse (req, res, next) {
     const { email } = req.body;
     try {
       const emailFound = await AuthService.checkIfEmailExists(email);
@@ -90,39 +93,22 @@ class AuthController {
     }
   }
 
-  static verifyAuthToken (req, res, next) {
+  static async verifyAuthToken (req, res, next) {
     let token = req.headers['x-access-token'] || req.headers['authorization'];
     if (token.startsWith('Bearer ')) {
       token = token.slice(7, token.length);
     }
-
-    if (token) {
-      jwt.verify(token, secretForAuthToken, (err, decoded) => {
-        if (err) {
-          if (req.headers['refreshtoken']) {
-            jwt.verify(token, req.headers['refreshtoken'], async (error, decoded) => {
-              if (error) {
-                const tokenPayload = await jwt.decode(token);
-                const refershtoken = await RefreshTokenService.checkIfRefreshTokenIsValid(tokenPayload.userID);
-                if (refershtoken) {
-                  const newToken = await jwt.sign(tokenPayload, req.headers['refreshtoken'], { expiresIn: 3600 });
-                  return res.json({ newToken, refershtoken });
-                } else {
-                  res.send(`<h1>Something is fishy about you hmmmmm.......</h1>`);
-                }
-              } else {
-                req.decode = decoded;
-                next();
-              }
-            });
-          }
-        } else {
-          req.decoded = decoded;
-          next();
-        }
-      });
+    const verifyRequestResult = await AuthService.verifyTokens(token, req.headers['refreshtoken'], secretForAuthToken);
+    if (verifyRequestResult) {
+      if (verifyRequestResult.sendAgainToken) {
+        return res.json({ newToken: verifyRequestResult.newToken });
+      }
+      req.decoded = verifyRequestResult.decoded;
+      next();
     } else {
-      return res.send(`<h1>Please Sign In First</h1>`);
+      res.json({
+        Error: 'Missing Authentication Please Sing In First'
+      });
     }
   }
 }
