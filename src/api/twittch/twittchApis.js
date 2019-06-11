@@ -7,13 +7,14 @@ class TwitchApis {
     this.baseUrl = 'https://api.twitch.tv/kraken/search/';
   }
 
-  _defaultHeaders (clientId, token, refreshtoken) {
+  _defaultHeaders (clientId, token) {
     return {
       'Client-ID': clientId,
       'authorization': token
     };
   }
-
+  //  https://api.twitch.tv/kraken/search/channels?query=<URL encoded search query>
+  //  channels?query
   async get (url) {
     const config = await configFactory(url);
     return this._request({

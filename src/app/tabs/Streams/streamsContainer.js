@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getStreams } from '../../state/twittch/actions';
-import HomeComponent from './homeComponent';
+import { getStreams } from '../../../state/twittch/actions';
+import StreamsComponent from './streamsComponent';
 
 const mapStateToProps = (state) => {
   return {
     getStreamsStart: state.twittch.getStreamsStart,
     streams: state.twittch.streams,
-    errors: state.twittch.errors
+    streamsErrors: state.twittch.streamsErrors
   };
 };
 
@@ -22,5 +22,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const HomeContainer = connect(mapStateToProps, mapDispatchToProps)(HomeComponent);
-export default HomeContainer;
+const StreamsContainer = connect(mapStateToProps, mapDispatchToProps)(StreamsComponent);
+export default StreamsContainer;

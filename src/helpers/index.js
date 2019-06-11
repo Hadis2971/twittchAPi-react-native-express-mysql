@@ -52,9 +52,17 @@ export const createPorfileUpdateObject = (data) => {
 };
 
 export const createRequestUrl = (type, searchTerm) => {
+  console.log(`inside createRequestUrl type => ${type} searchTerm => ${searchTerm}`);
   switch (type) {
     case 'streams': {
       return `streams?query=${searchTerm}`;
     }
+    case 'games': {
+      return `games?query=${searchTerm}`;
+    }
+    case 'channels': {
+      return `channels?query=${searchTerm}`;
+    }
+    default: return `streams?query=${searchTerm}`;
   }
 };

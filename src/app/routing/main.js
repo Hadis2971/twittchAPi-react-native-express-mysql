@@ -1,10 +1,10 @@
 import { createDrawerNavigator } from 'react-navigation';
-import HomeContainer from '../home/homeContainer';
+import TabBottomNavigator from '../routing/tabs';
 import Logout from '../auth/logoutComponent';
 import ProfileContainer from '../profile/profileContainer';
 const DrawerNavigator = createDrawerNavigator({
   Home: {
-    screen: HomeContainer,
+    screen: TabBottomNavigator,
     navigationOptions: ({ navigation }) => ({
       title: 'WhoIsStreaming?!'
     })

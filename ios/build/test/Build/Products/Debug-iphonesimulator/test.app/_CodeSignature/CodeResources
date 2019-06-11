@@ -6,7 +6,7 @@
 	<dict>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<data>
-		vhyy6eB5liWJG229O4I1pa2DkA0=
+		NSbWBp9kA8XYKoLMQGSYhidc+FY=
 		</data>
 		<key>Frameworks/XCTAutomationSupport.framework/Info.plist</key>
 		<data>
@@ -95,7 +95,7 @@
 		</data>
 		<key>PlugIns/testTests.xctest/testTests</key>
 		<data>
-		2zsiYxgdrMDGmpk+OgwveVj9Cgg=
+		24YQQv7+RkeK7pmYNocXWEKaPGs=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -104,11 +104,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			vhyy6eB5liWJG229O4I1pa2DkA0=
+			NSbWBp9kA8XYKoLMQGSYhidc+FY=
 			</data>
 			<key>hash2</key>
 			<data>
-			VtATlDiUS0OpOyLTs0ao3R9mcZ83kKBy9ArujtFKhhE=
+			Yo+EKXA0IGPf9Thl3wJgGc8A8r2ZQ35WxvN67Zp0XjI=
 			</data>
 		</dict>
 		<key>Frameworks/XCTAutomationSupport.framework/Info.plist</key>
@@ -315,11 +315,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			2zsiYxgdrMDGmpk+OgwveVj9Cgg=
+			24YQQv7+RkeK7pmYNocXWEKaPGs=
 			</data>
 			<key>hash2</key>
 			<data>
-			mu3eSeyGbzIXEHKy6nYuxSkGlwi5lDQZC7JOjM8atU4=
+			mTpQ1WG3fBoc0F0kdvpEXyj4z12poKth1tsqPnf+7A8=
 			</data>
 		</dict>
 	</dict>

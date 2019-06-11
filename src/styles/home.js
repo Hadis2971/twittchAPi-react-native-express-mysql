@@ -8,22 +8,24 @@ export default StyleSheet.create({
   searchInfo: {
     flex: 1
   },
-  searchResults: {
-    flex: 1
+  resultsContainer: {
+    flex: 3
+  },
+  searchHeader: {
+    color: '#3399ff'
   },
   form: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
-    marginTop: '20%'
-  },
-  picker: {
-    flex: 1,
-    width: 300,
-    height: 100
+    marginTop: '13%'
   },
   inputContainer: {
-    flex: 1,
     width: 300
+  },
+  infoContainer: {
+    marginBottom: '7%'
+  },
+  text: {
+    fontSize: 20,
+    color: '#595959'
   }
 });

@@ -11,7 +11,25 @@ const twittchReducer = (state = initialState, action) => {
       return reducerMethods.getStreamsSuccessUpdate(state, action.streams);
     }
     case types.GET_STREAMS_FAIL: {
-      return reducerMethods.getStreamsFailUpdate(state, action.errors);
+      return reducerMethods.getStreamsFailUpdate(state, action.streamsErrors);
+    }
+    case types.GET_GAMES_START: {
+      return reducerMethods.getGamesStartUpdate(state);
+    }
+    case types.GET_GAMES_SUCCESS: {
+      return reducerMethods.getGamesSuccessUpdate(state, action.games);
+    }
+    case types.GET_GAMES_FAIL: {
+      return reducerMethods.getGamesFailUpdate(state, action.gamesError);
+    }
+    case types.GET_CHANNELS_START: {
+      return reducerMethods.getChannelsStartUpdate(state);
+    }
+    case types.GET_CHANNELS_SUCCESS: {
+      return reducerMethods.getChannelssSuccessUpdate(state, action.channels);
+    }
+    case types.GET_CHANNELS_FAIL: {
+      return reducerMethods.getChannelssFailUpdate(state, action.channelsError);
     }
     default: return state;
   }
