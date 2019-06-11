@@ -1,4 +1,6 @@
+import network from '../network';
 import configFactory from './configFactory';
+import configFactoryMyServer from './configFactoryMyServer';
 import axios from 'axios';
 const axiosInstance = axios.create();
 
@@ -13,8 +15,7 @@ class TwitchApis {
       'authorization': token
     };
   }
-  //  https://api.twitch.tv/kraken/search/channels?query=<URL encoded search query>
-  //  channels?query
+
   async get (url) {
     const config = await configFactory(url);
     return this._request({
@@ -23,6 +24,16 @@ class TwitchApis {
       method: 'get',
       headers: Object.assign({}, this._defaultHeaders(config.clientID, config.token))
     });
+  }
+
+  async addChannelToFavorites (body) {
+    const config = await configFactoryMyServer('twitch', body);
+    try {
+      const addChannelToFavoritesResult = await network.post(config);
+      return addChannelToFavoritesResult;
+    } catch (error) {
+      console.log(`inside addChannelToFavorites error => ${error}`);
+    }
   }
 
   _request (config) {

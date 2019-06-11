@@ -83,3 +83,33 @@ export const getChannelssFailUpdate = (oldState, errors) => {
     channelsError: errors
   });
 };
+
+export const addChannelToFavoritesStartUpdate = (oldState) => {
+  return updateObject({ ...oldState }, {
+    addChannelToFavoritesStart: true,
+    addChannelToFavoritesFail: false,
+    addChannelToFavoritesSuccess: false,
+    addChannelError: null,
+    newFavoriteChannel: null
+  });
+};
+
+export const addChannelToFavoritesFailUpdate = (oldState, error) => {
+  return updateObject({ ...oldState }, {
+    addChannelToFavoritesStart: false,
+    addChannelToFavoritesFail: true,
+    addChannelToFavoritesSuccess: false,
+    addChannelError: error,
+    newFavoriteChannel: null
+  });
+};
+
+export const addChannelToFavoritesSuccessUpdate = (oldState, newChannel) => {
+  return updateObject({ ...oldState }, {
+    addChannelToFavoritesStart: false,
+    addChannelToFavoritesFail: false,
+    addChannelToFavoritesSuccess: true,
+    addChannelError: null,
+    newFavoriteChannel: newChannel
+  });
+};

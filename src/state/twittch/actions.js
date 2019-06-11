@@ -1,10 +1,11 @@
 import * as types from './actionTypes';
 import twittchApis from '../../api/twittch/twittchApis';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const getStreams = (path) => async (dispatch) => {
   dispatch({ type: types.GET_STREAMS_START });
   const searchStremasResult = await twittchApis.get(path);
-
+  console.log(`inside getStreams => ${searchStremasResult.pagination}`);
   if ((!searchStremasResult) || (!searchStremasResult.data.streams.length)) {
     dispatch({
       type: types.GET_STREAMS_FAIL,
@@ -47,5 +48,26 @@ export const getChannels = (path) => async (dispatch) => {
       type: types.GET_CHANNELS_SUCCESS,
       channels: getChannelsResult.data.channels
     });
+  }
+};
+
+export const addChannelToFavorites = (body) => async (dispatch) => {
+  dispatch({ type: types.ADD_CHANNEL_TO_FAVORITES_START });
+  if (!body.userID) {
+    body.userID = await AsyncStorage.getItem('userID');
+  }
+  const addChannelToFavoritesResult = await twittchApis.addChannelToFavorites(body);
+  if ((!addChannelToFavoritesResult.data) || (addChannelToFavoritesResult.data.Error)) {
+    dispatch({
+      type: types.ADD_CHANNEL_TO_FAVORITES_FAIL,
+      addChannelError: addChannelToFavoritesResult.data.Error || 'Something Went Wrong Please Try Again Later'
+    });
+    return false;
+  } else {
+    dispatch({
+      type: types.ADD_CHANNEL_TO_FAVORITES_SUCCESS,
+      newFavoriteChannel: addChannelToFavoritesResult.data
+    });
+    return true;
   }
 };

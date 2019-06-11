@@ -8,7 +8,6 @@ axiosInstance.interceptors.response.use(async (response) => {
     const rt = await AsyncStorage.getItem('refreshtoken');
     await AsyncStorage.setItem('token', response.data.newToken);
     const data = JSON.parse(response.config.data);
-    console.log(data);
     return axios({
       url: response.config.url,
       method: response.config.method,

@@ -16,14 +16,14 @@ class StreamsComponent extends PureComponent {
   
     createStreamList = (streams) => {
       return streams.map((stream) => {
-        return <Stream 
-            key={stream._id}
-            src={stream.channel.logo || stream.logo.small}
-            game={stream.channel.game || stream.name}
-            name={stream.channel.name || ''}
-            ln={stream.channel.broadcaster_language || ''}
-            url={stream.channel.url || ''}
-        />
+        return {
+          key: stream._id,
+          src: stream.channel.logo,
+          game: stream.channel.game,
+          name: stream.channel.name,
+          ln: stream.channel.broadcaster_language,
+          url: stream.channel.url
+        }
       });
     }
   
@@ -53,6 +53,10 @@ class StreamsComponent extends PureComponent {
       await getStreams(path);
     }
   
+    handleInfiniteScroll = () => {
+      
+    };
+
     render () {
       const { streams, errors } = this.state;
       const { getStreamsStart, streamsErrors } = this.props;
@@ -69,14 +73,16 @@ class StreamsComponent extends PureComponent {
         >
           <View style={homeStyles.resultsContainer}>
             <FlatList
+              onEndReached={this.handleInfiniteScroll}
+              onEndReachedThreshold={0}
               data={streams}
               renderItem={({item}) => (
                 <View style={homeStyles.infoContainer}>
-                  <Image source={{ uri: item.props.src }} style={{ width: 75, height: 75 }} />
-                  <Text style={homeStyles.text}>{`Game: ${item.props.game} Language: ${item.props.ln}`}</Text>
-                  <Text style={homeStyles.text}>{`Channel: ${item.props.name}`}</Text>
+                  <Image source={{ uri: item.src }} style={{ width: 75, height: 75 }} />
+                  <Text style={homeStyles.text}>{`Game: ${item.game} Language: ${item.ln}`}</Text>
+                  <Text style={homeStyles.text}>{`Channel: ${item.name}`}</Text>
                   <Text style={[homeStyles.text, { color: 'blue' }]}
-                    onPress={() => Linking.openURL(item.props.url)}>
+                    onPress={() => Linking.openURL(item.url)}>
                       Watch
                   </Text>
                 </View>

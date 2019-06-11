@@ -1,6 +1,8 @@
 const serverSideErrorHandler = (error, req, res, next) => {
   if (error) {
-    res.send(`<h1>Error 500 Internal Server Error Please Try Again Later!!!</h1>`);
+    res.json({
+      Error: 'Server Error Please Try Again Later'
+    });
   }
 };
 

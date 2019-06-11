@@ -16,22 +16,15 @@ class GamesComponent extends PureComponent {
   
     createGamesList = (games) => {
       return games.map((game) => {
-        return <Game 
-          key={game._id}
-          src={game.logo.small}
-          name={game.name}
-          popularity={game.popularity}
-        />
+        return {
+          key: game._id,
+          src: game.logo.small,
+          name: game.name,
+          popularity: game.popularity
+        }
       });
     }
   
-    componentDidMount() {
-      this.setState({
-        games: [],
-        errors: false
-      });
-    }
-
     componentWillReceiveProps(nextProps) {
       if (nextProps.gamesError) {
         this.setState({
@@ -76,8 +69,8 @@ class GamesComponent extends PureComponent {
                 data={games}
                 renderItem={({item}) => (
                   <View style={homeStyles.infoContainer}>
-                    <Image source={{ uri: item.props.src }} style={{ width: 75, height: 75 }} />
-                    <Text style={homeStyles.text}>{`Game: ${item.props.name} Popularity: ${item.props.popularity}`}</Text>
+                    <Image source={{ uri: item.src }} style={{ width: 75, height: 75 }} />
+                    <Text style={homeStyles.text}>{`Game: ${item.name} Popularity: ${item.popularity}`}</Text>
                   </View>
                 )}
               />

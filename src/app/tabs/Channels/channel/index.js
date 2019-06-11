@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, LinkingIOS } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import channelStyles from '../../../../styles/channel';
 
 const Channel = (props) => {
