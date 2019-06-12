@@ -1,12 +1,17 @@
 import ProfileService from './profileService';
 
 class ProfileController {
-  static updateUserProfile (req, res, next) {
+  static async updateUserProfile (req, res, next) {
     const { userID } = req.decoded;
     const { body } = req;
     try {
-      const updateUserSuccess = ProfileService.updateUserProfile(userID, body);
+      const updateUserSuccess = await ProfileService.updateUserProfile(userID, body);
       if (updateUserSuccess) {
+        if (updateUserSuccess === 'email') {
+          return res.json({
+            Error: 'Email Already in Use!!!'
+          });
+        }
         res.json(body);
       } else {
         res.json({

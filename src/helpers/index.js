@@ -68,3 +68,22 @@ export const checkObjectForValues = (obj) => {
   }
   return false;
 };
+
+export const getUserDataFromStorage = async () => {
+  const firstName = await AsyncStorage.getItem('firstName');
+  const lastName = await AsyncStorage.getItem('lastName');
+  const username = await AsyncStorage.getItem('username');
+  const userEmail = await AsyncStorage.getItem('userEmail');
+  return {
+    firstName,
+    lastName,
+    username,
+    userEmail
+  };
+};
+
+export const updateStorageAfterProfileUpdate = async (data) => {
+  for (let key in data) {
+    await AsyncStorage.setItem(key, data[key]);
+  }
+};

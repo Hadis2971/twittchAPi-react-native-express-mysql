@@ -5,10 +5,6 @@ import ProfileComponent from './profileComponent';
 
 const mapStateToProps = (state) => {
   return {
-    firstName: state.login.firstName,
-    lastName: state.login.lastName,
-    username: state.login.username,
-    userEmail: state.login.userEmail,
     updateUserProfileStart: state.profile.updateUserProfileStart,
     updateUserProfileSuccess: state.profile.updateUserProfileSuccess,
     updateUserProfileFail: state.profile.updateUserProfileFail,
