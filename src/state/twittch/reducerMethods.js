@@ -113,3 +113,31 @@ export const addChannelToFavoritesSuccessUpdate = (oldState, newChannel) => {
     newFavoriteChannel: newChannel
   });
 };
+
+export const getAllFavChannelsStartUpdate = (oldState) => {
+  return updateObject({ ...oldState }, {
+    getFavChanneslStart: true,
+    getFavChannelsFail: false,
+    getFavChannelsSuccess: false,
+    favChanneslError: null
+  });
+};
+
+export const getAllFavChannelsFailUpdate = (oldState, favChanneslError) => {
+  return updateObject({ ...oldState }, {
+    getFavChanneslStart: false,
+    getFavChannelsFail: true,
+    getFavChannelsSuccess: false,
+    favChanneslError: favChanneslError
+  });
+};
+
+export const getAllFavChannelsSuccessUpdate = (oldState, channels) => {
+  return updateObject({ ...oldState }, {
+    getFavChanneslStart: false,
+    getFavChannelsFail: true,
+    getFavChannelsSuccess: false,
+    favChanneslError: null,
+    channels: [...channels]
+  });
+};

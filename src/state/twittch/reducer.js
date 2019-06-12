@@ -40,6 +40,15 @@ const twittchReducer = (state = initialState, action) => {
     case types.ADD_CHANNEL_TO_FAVORITES_FAIL: {
       return reducerMethods.addChannelToFavoritesFailUpdate(state, action.addChannelError);
     }
+    case types.GET_FAV_CHANNELS_START: {
+      return reducerMethods.getAllFavChannelsStartUpdate(state);
+    }
+    case types.GET_FAV_CHANNELS_SUCCESS: {
+      return reducerMethods.getAllFavChannelsSuccessUpdate(state, action.channels);
+    }
+    case types.GET_FAV_CHANNELS_FAIL: {
+      return reducerMethods.getAllFavChannelsFailUpdate(state, action.favChanneslError);
+    }
     default: return state;
   }
 };

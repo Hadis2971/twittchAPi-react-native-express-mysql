@@ -36,6 +36,16 @@ class TwitchApis {
     }
   }
 
+  async getAllFavChannels (id) {
+    const config = await configFactoryMyServer(`twitch/${id}`, null);
+    try {
+      const getAllFavChannelsResult = await network.get(config);
+      return getAllFavChannelsResult;
+    } catch (error) {
+      console.log(`inside getAllFavChannels error => ${error}`);
+    }
+  }
+
   _request (config) {
     return axiosInstance(config);
   }

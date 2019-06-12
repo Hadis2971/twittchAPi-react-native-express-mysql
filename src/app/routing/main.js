@@ -2,6 +2,8 @@ import { createDrawerNavigator } from 'react-navigation';
 import TabBottomNavigator from '../routing/tabs';
 import Logout from '../auth/logoutComponent';
 import ProfileContainer from '../profile/profileContainer';
+import FavChannelsContainer from '../favoriteChannels/favChannelsCont';
+
 const DrawerNavigator = createDrawerNavigator({
   Home: {
     screen: TabBottomNavigator,
@@ -13,6 +15,12 @@ const DrawerNavigator = createDrawerNavigator({
     screen: ProfileContainer,
     navigationOptions: ({ navigation }) => ({
       title: 'Profile'
+    })
+  },
+  Favorites: {
+    screen: FavChannelsContainer,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Favorite Channels'
     })
   },
   Logout: {

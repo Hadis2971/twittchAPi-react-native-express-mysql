@@ -71,3 +71,23 @@ export const addChannelToFavorites = (body) => async (dispatch) => {
     return true;
   }
 };
+
+export const getAllFavChannels = (id) => async (dispatch) => {
+  dispatch({ type: types.GET_FAV_CHANNELS_START });
+  if (!id) {
+    id = await AsyncStorage.getItem('userID');
+  }
+  const getAllFavChannelsResult = await twittchApis.getAllFavChannels(id);
+  if ((!getAllFavChannelsResult) || getAllFavChannelsResult.data.Error) {
+    dispatch({
+      type: types.GET_FAV_CHANNELS_FAIL,
+      favChanneslError: getAllFavChannelsResult.data.Error || 'Something Went Wrong Please Try Again Later'
+    });
+    return false;
+  } else {
+    dispatch({
+      type: types.GET_FAV_CHANNELS_SUCCESS,
+      channels: getAllFavChannelsResult.data
+    });
+  }
+};
