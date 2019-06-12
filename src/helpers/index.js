@@ -16,14 +16,9 @@ export const getUserDataFromAuthToken = async (token) => {
 };
 
 export const saveUserDataToAsyncStorage = async (userData) => {
-  console.log(userData);
   for (let key in userData) {
     AsyncStorage.setItem(key, userData[key]);
   }
-  const a = await AsyncStorage.getItem('refreshtoken');
-  console.log(a);
-  const b = await AsyncStorage.getItem('token');
-  console.log(b);
 };
 
 export const removeUserDataFromAsyncStorage = async () => {
@@ -65,4 +60,11 @@ export const createRequestUrl = (type, searchTerm) => {
     }
     default: return `streams?query=${searchTerm}`;
   }
+};
+
+export const checkObjectForValues = (obj) => {
+  for (let key in obj) {
+    if (obj[key]) return true;
+  }
+  return false;
 };

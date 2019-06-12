@@ -8,7 +8,7 @@ import validationSchema from '../../validation/profile';
 import spinnerStyles from '../../styles/spinner';
 import profileStyles from '../../styles/profile';
 import alertStyle from '../../styles/alert';
-import { createPorfileUpdateObject } from '../../helpers';
+import { createPorfileUpdateObject, checkObjectForValues } from '../../helpers';
 
 class ProfileComponent extends PureComponent {
 
@@ -37,6 +37,7 @@ class ProfileComponent extends PureComponent {
 
   handleUpdateProfileSubmit = async (values, { resetForm }) => {
     const { updateUserProfile } = this.props.actions;
+    if (!checkObjectForValues(values)) return;
     const updateValues = createPorfileUpdateObject(values);
     const updateUserProfileSuccess = await updateUserProfile(updateValues);
     if (updateUserProfileSuccess) {
@@ -49,7 +50,7 @@ class ProfileComponent extends PureComponent {
   
   render () {
     const { showAlert, success } = this.state;
-    const { updateUserProfileStart, errors } = this.props;
+    const { updateUserProfileStart, errors, firstName, lastName, username, userEmail } = this.props;
     console.log(success);
     return (
       <View>
@@ -76,7 +77,7 @@ class ProfileComponent extends PureComponent {
           />
         </View>}
         <Formik
-            initialValues={{ firstName: '', lastName: '', email: '', username: '' }} 
+            initialValues={{ firstName: firstName, lastName: lastName, email: userEmail, username: username }} 
             validationSchema={validationSchema}
             onSubmit={this.handleUpdateProfileSubmit}
             >

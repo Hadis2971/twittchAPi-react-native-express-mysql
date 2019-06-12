@@ -9,16 +9,16 @@ const DrawerNavigator = createDrawerNavigator({
       title: 'WhoIsStreaming?!'
     })
   },
-  Logout: {
-    screen: Logout,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Logout'
-    })
-  },
   Profile: {
     screen: ProfileContainer,
     navigationOptions: ({ navigation }) => ({
       title: 'Profile'
+    })
+  },
+  Logout: {
+    screen: Logout,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Logout'
     })
   }
 },
