@@ -1,6 +1,16 @@
 import React, { PureComponent } from 'react';
 import { View, Button, StyleSheet } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { removeUserDataFromAsyncStorage } from '../../helpers';
+
+const navigateAction = NavigationActions.navigate({
+  routeName: 'Auth',
+
+  params: {},
+
+  action: NavigationActions.navigate({ routeName: 'Auth' })
+});
+
 class Logout extends PureComponent {
   render () {
     return (

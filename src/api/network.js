@@ -38,6 +38,9 @@ class Network {
   }
 
   post (config) {
+    for (let key in config) {
+      console.log(`key => ${key}  value => ${config[key]}`);
+    }
     return this._request({
       url: config.url,
       method: 'post',

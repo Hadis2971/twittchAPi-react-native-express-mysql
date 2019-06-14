@@ -1,7 +1,8 @@
 import express from 'express';
 import passport from 'passport';
+import exphbs from 'express-handlebars';
+import path from 'path';
 import { PORT } from './src/config';
-
 import router from './src/router';
 import errorHandler from './src/components/errors';
 import authApis from './src/components/auth/authAPI';
@@ -16,8 +17,14 @@ app.use((req, res, next) => {
   next();
 });
 
+const hbs = exphbs.create({ defaultLayout: null, extname: '.handlebars' });
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+app.set('views', path.join(__dirname, 'src/views'));
+app.use(express.static(path.resolve('./src/public')));
 
 app.use(passport.initialize());
 authApis.loginConfig(passport);

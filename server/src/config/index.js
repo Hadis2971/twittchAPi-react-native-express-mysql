@@ -14,3 +14,8 @@ export const databseConfig = {
 
 export const secretForAuthToken = process.env.SECRET_FOR_AUTH_TOKEN;
 export const secretForRefreshToken = process.env.SECRET_FOR_REFRESH_TOKEN;
+export const secretForResetPassToken = process.env.SECRET_FOR_RESET_PASS_TOKEN;
+
+export const emailServiceProvider = process.env.EMAIL_SERVICE_PROVIDER;
+export const emailUser = process.env.EMAIL_USERNAME;
+export const emailPassword = process.env.EMAIL_PASSWORD;

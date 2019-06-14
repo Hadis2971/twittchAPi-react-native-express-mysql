@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, Button, TouchableOpacity } from 'react-native';
 import { Formik } from 'formik';
 import { MyInput, Form } from '../common/userInput';
-import AwesomeAlert from 'react-native-awesome-alerts';
+import Alert from '../common/alert';
 import Spinner from 'react-native-loading-spinner-overlay';
 import validationSchema from '../../validation/login';
 import styles from '../../styles/login';
@@ -43,32 +43,23 @@ class LoginComponent extends PureComponent {
   render () {
     const { showAlert } = this.state;
     const { loginUserStart, errors } = this.props;
-    
     return (
       <View>
-        {showAlert && 
-        <View style={alertStyle.container}>
-          <AwesomeAlert
-            show={showAlert}
-            showProgress={false}
-            title="Login Error"
-            message={errors}
-            closeOnTouchOutside={true}
-            closeOnHardwareBackPress={false}
-            showCancelButton={false}
-            showConfirmButton={true}
-            confirmText="OK"
-            confirmButtonColor="#DD6B55"
-            onConfirmPressed={() => {
-              this.hideAlert();
-            }}
-          />
-        </View>}
         <Spinner 
           visible={loginUserStart}
           textContent={'Please Wait...'}
           textStyle={spinnerStyles.spinnerTextStyle}
         />
+        { showAlert && <View style={alertStyle.container}>
+          <Alert 
+          showMyAlert={showAlert}
+          title='Login Error'
+          message={errors}
+          hideMyAlert={this.hideAlert}
+          confirmText='OK'
+          buttonColor='#DD6B55'
+        />
+        </View>}
         <Formik
           initialValues={{ email: '', password: '' }}
           validationSchema={validationSchema}
@@ -79,11 +70,20 @@ class LoginComponent extends PureComponent {
               <Form style={styles.form}>
                 <MyInput label='Email' name='email' type='email' />
                 <MyInput label='Password' name='password' type='password' />
-                <Button onPress={props.handleSubmit} title='Login' />
+                <TouchableOpacity
+                  onPress={() => props.handleSubmit()}
+                >
+                  <Text style={styles.loginBtn}>Login</Text>
+                </TouchableOpacity>
               </Form>
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('Register')}>
-                <Text style={styles.goToRegister}>Not Registred?</Text>
+                <Text style={styles.link}>Not Registred?</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('ForgotPassword')}
+              >
+              <Text style={styles.link}>Forgot Password?</Text>
               </TouchableOpacity>
             </View>
           )}

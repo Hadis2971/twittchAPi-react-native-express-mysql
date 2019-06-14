@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import { MyInput, Form } from '../common/userInput';
 import Spinner from 'react-native-loading-spinner-overlay';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import Alert from '../common/alert';
 import validationSchema from '../../validation/register';
 import styles from '../../styles/register';
 import spinnerStyles from '../../styles/spinner';
@@ -51,23 +52,15 @@ class RegisterComponent extends PureComponent {
           textContent={'Please Wait...'}
           textStyle={spinnerStyles.spinnerTextStyle}
         />
-        {showAlert && 
-        <View style={alertStyle.container}>
-        <AwesomeAlert
-            show={showAlert}
-            showProgress={false}
-            title="Register Error"
-            message={turnObjectIntoArray(errors)}
-            closeOnTouchOutside={true}
-            closeOnHardwareBackPress={false}
-            showCancelButton={false}
-            showConfirmButton={true}
-            confirmText="OK"
-            confirmButtonColor="#DD6B55"
-            onConfirmPressed={() => {
-              this.hideAlert();
-            }}
-          />
+        { showAlert && <View style={alertStyle.container}>
+          <Alert 
+          showMyAlert={showAlert}
+          title='Register Error'
+          message={turnObjectIntoArray(errors)}
+          hideMyAlert={this.hideAlert}
+          confirmText='OK'
+          buttonColor='#DD6B55'
+        />
         </View>}
         <Formik
           initialValues={{ firstName: '', lastName: '', email: '', username: '', password: '', password2: '' }}
@@ -83,7 +76,11 @@ class RegisterComponent extends PureComponent {
                 <MyInput label='Username' name='username' type='text' />
                 <MyInput label='Password' name='password' type='password' />
                 <MyInput label='Confirm Password' name='password2' type='password' />
-                <Button onPress={props.handleSubmit} title='Register' />
+                <TouchableOpacity
+                  onPress={() => props.handleSubmit()}
+                >
+                  <Text style={styles.loginBtn}>Register</Text>
+                </TouchableOpacity>
               </Form>
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('Login')}>

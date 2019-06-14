@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs';
+
 export const createNewPayload = (data) => {
   const tokenPayload = {
     userID: data.userID,
@@ -7,4 +9,10 @@ export const createNewPayload = (data) => {
     username: data.username
   };
   return tokenPayload;
+};
+
+export const hashSomething = async (something) => {
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(something, salt);
+  return hash;
 };
