@@ -4,17 +4,22 @@ import LoginContainer from '../auth/loginContainer';
 import ForgotPasswordContainer from '../forgotPassword/forgotPassContainer';
 
 const AuthNavigator = createStackNavigator({
-  Login: { screen: LoginContainer },
-  Register: { screen: RegisterContainer },
-  ForgotPassword: { screen: ForgotPasswordContainer }
-},
-{
-  initialRouteName: 'Login',
-  navigationOptions: {
-    headerStyle: { backgroundColor: '#E73536' },
-    title: 'You are not logged in',
-    headerTintColor: 'white'
+  Login: {
+    screen: LoginContainer
+  },
+  Register: {
+    screen: RegisterContainer
+  },
+  ForgotPassword: {
+    screen: ForgotPasswordContainer
+  }
+}, {
+  defaultNavigationOptions: {
+    headerTintColor: '#FFF',
+    headerTitle: 'Twitch Helper',
+    headerStyle: {
+      backgroundColor: '#0059b3'
+    }
   }
 });
-
 export default AuthNavigator;

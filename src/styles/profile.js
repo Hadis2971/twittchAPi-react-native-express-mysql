@@ -14,7 +14,7 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '20%'
+    marginTop: '15%'
   },
   hdr: {
     textAlign: 'center',

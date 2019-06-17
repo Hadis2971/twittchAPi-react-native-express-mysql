@@ -38,6 +38,38 @@
 			<key>uniqueIdentifier</key>
 			<string>B68F1EF5-B7A0-4EB9-ADAB-0AFDBCB7932C</string>
 		</dict>
+		<key>FC141FD6-F52C-4E4C-BD60-F8C24CBDBF8E</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>FC141FD6-F52C-4E4C-BD60-F8C24CBDBF8E.xcactivitylog</string>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>test project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>test</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project test with scheme test and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>582457519.39836204</real>
+			<key>timeStoppedRecording</key>
+			<real>582457522.48216796</real>
+			<key>title</key>
+			<string>Building project test with scheme test and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>FC141FD6-F52C-4E4C-BD60-F8C24CBDBF8E</string>
+		</dict>
 	</dict>
 </dict>
 </plist>

@@ -1,11 +1,11 @@
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 import AuthLoading from '../routing/authLoading';
 import AuthNavigator from '../routing/auth';
-import MainNavigator from '../routing/main';
+import drawerStackNavigator from '../routing/drawerStack';
 const AppNavigator = createSwitchNavigator({
   AuthLoading: AuthLoading,
   Auth: AuthNavigator,
-  App: MainNavigator
+  App: drawerStackNavigator
 },
 {
   initialRouteName: 'AuthLoading'

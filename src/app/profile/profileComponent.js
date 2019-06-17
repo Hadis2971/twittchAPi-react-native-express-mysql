@@ -3,7 +3,6 @@ import { View, Text, Button } from 'react-native';
 import { Formik } from 'formik';
 import { MyInput, Form } from '../common/userInput';
 import Spinner from 'react-native-loading-spinner-overlay';
-import AwesomeAlert from 'react-native-awesome-alerts';
 import Alert from '../common/alert';
 import ObjectsListBox from '../common/listBox/objecstListBox';
 import validationSchema from '../../validation/profile';
@@ -89,7 +88,7 @@ class ProfileComponent extends PureComponent {
             <Text style={profileStyles.hdr} h1>Your Current Information</Text>
             <ObjectsListBox 
               data={userInfo} 
-              itemStyle={{fontSize: 20, marginBottom: '3%', color: '#3399ff'}}/>
+              itemStyle={{fontSize: 20, marginBottom: '1.7%', color: '#3399ff'}}/>
         </View>
         <View style={profileStyles.formContainer}>
           <Formik
