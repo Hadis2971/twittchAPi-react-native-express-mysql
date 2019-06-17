@@ -14,9 +14,7 @@ const DrawerNavigator = createDrawerNavigator({
   Favorites: {
     screen: FavChannelsContainer
   },
-  Logout: {
-    screen: Logout
-  }
+  Logout: Logout
 },
 {
   initialRouteName: 'Home'
