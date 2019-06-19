@@ -36,8 +36,8 @@ class TwitchApis {
     }
   }
 
-  async getAllFavChannels (id) {
-    const config = await configFactoryMyServer(`twitch/${id}`, null);
+  async getAllFavChannels (id, offset) {
+    const config = await configFactoryMyServer(`twitch/${id}/${offset}`);
     try {
       const getAllFavChannelsResult = await network.get(config);
       return getAllFavChannelsResult;

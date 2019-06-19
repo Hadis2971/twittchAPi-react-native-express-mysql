@@ -72,12 +72,12 @@ export const addChannelToFavorites = (body) => async (dispatch) => {
   }
 };
 
-export const getAllFavChannels = (id) => async (dispatch) => {
+export const getAllFavChannels = (id, offsetForLoadingFavChannels) => async (dispatch) => {
   dispatch({ type: types.GET_FAV_CHANNELS_START });
   if (!id) {
     id = await AsyncStorage.getItem('userID');
   }
-  const getAllFavChannelsResult = await twittchApis.getAllFavChannels(id);
+  const getAllFavChannelsResult = await twittchApis.getAllFavChannels(id, offsetForLoadingFavChannels);
   if ((!getAllFavChannelsResult) || getAllFavChannelsResult.data.Error) {
     dispatch({
       type: types.GET_FAV_CHANNELS_FAIL,
@@ -89,5 +89,6 @@ export const getAllFavChannels = (id) => async (dispatch) => {
       type: types.GET_FAV_CHANNELS_SUCCESS,
       channels: getAllFavChannelsResult.data
     });
+    return getAllFavChannelsResult.data;
   }
 };

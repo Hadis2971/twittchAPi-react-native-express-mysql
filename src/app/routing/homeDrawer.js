@@ -5,15 +5,9 @@ import ProfileContainer from '../profile/profileContainer';
 import FavChannelsContainer from '../favoriteChannels/favChannelsCont';
 
 const DrawerNavigator = createDrawerNavigator({
-  Home: {
-    screen: TabBottomNavigator
-  },
-  Profile: {
-    screen: ProfileContainer
-  },
-  Favorites: {
-    screen: FavChannelsContainer
-  },
+  Home: TabBottomNavigator,
+  Profile: ProfileContainer,
+  Favorites: FavChannelsContainer,
   Logout: Logout
 },
 {

@@ -12,10 +12,12 @@ class TwitchService {
     }
   }
 
-  static async getFavoriteChannels (userID) {
+  static async getFavoriteChannels (userID, offset) {
     try {
       const channels = await favoriteChannels.findAll({
         attributes: ['id', 'channel', 'url', 'image'],
+        offset: (offset - 0),
+        limit: 5,
         where: {
           user: userID
         }

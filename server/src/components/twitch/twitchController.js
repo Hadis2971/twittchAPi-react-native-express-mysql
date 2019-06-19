@@ -12,8 +12,9 @@ class TwitchController {
   }
 
   static async getAllFavoriteChannels (req, res, next) {
-    const { userID } = req.params;
-    const result = await TwitchService.getFavoriteChannels(userID);
+    const { userID, offset } = req.params;
+    console.log(`offset => ${offset} type => ${typeof offset}`);
+    const result = await TwitchService.getFavoriteChannels(userID, offset);
     if (result.error) {
       next(result.error);
     } else {
