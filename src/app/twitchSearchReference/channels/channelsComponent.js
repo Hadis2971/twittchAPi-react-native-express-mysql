@@ -19,21 +19,27 @@ class ChannelsComponent extends PureComponent {
     }
   }
 
-  createChannelsList = (channels) => {
+  addNewChannelToFavorites = async (data) => {
+    const { addChannelToFavorites } = this.props.actions;
+    const addChannelToFavoritesResult = await addChannelToFavorites(data);
+    if (!addChannelToFavoritesResult) {
+      this.setState({
+        showMyAlert: true
+      })
+    } else {
+      this.setState({
+        showMyAlert: false
+      })
+    }
+  };
+
+  renderChannel = ({ item }) => {
     const { userID } = this.props;
-    return channels.map((channel) => {
-      return {
-        key: channel._id,
-        src:channel.profile_banner,
-        name:channel.name,
-        description:channel.description,
-        followers:channel.followers,
-        views:channel.views,
-        url:channel.url,
-        userID
-      }
-    });
-  }
+    return <Channel 
+    item={item} 
+    userID={userID} 
+    addNewChannelToFavorites={this.addNewChannelToFavorites}/>
+  };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.channelsError) {
@@ -42,9 +48,9 @@ class ChannelsComponent extends PureComponent {
       });
       return;
     }
-    const channelsList = this.createChannelsList(nextProps.channels);
+    
     this.setState({
-      channels: [...channelsList]
+      channels: [...nextProps.channels]
     });
   }
   
@@ -67,23 +73,10 @@ class ChannelsComponent extends PureComponent {
     });
   };
 
-  addNewChannelToFavorites = async (data) => {
-    const { addChannelToFavorites } = this.props.actions;
-    const addChannelToFavoritesResult = await addChannelToFavorites(data);
-    if (!addChannelToFavoritesResult) {
-      this.setState({
-        showMyAlert: true
-      })
-    } else {
-      this.setState({
-        showMyAlert: false
-      })
-    }
-  };
-
   render () {
     const { channels, errors, showMyAlert } = this.state;
-    const { getChannelsStart, channelsError, addChannelToFavoritesStart, userID, addChannelError } = this.props;
+    const { getChannelsStart, channelsError, addChannelToFavoritesStart, addChannelError } = this.props;
+    
     return (
       <TabsWrapper 
         errors={errors} 
@@ -112,29 +105,8 @@ class ChannelsComponent extends PureComponent {
         />
           <FlatList
             data={channels}
-            renderItem={({item}) => (
-              <View style={homeStyles.infoContainer}>
-                <Image source={{ uri: item.src }} style={{ width: 75, height: 75 }} />
-                <Text style={homeStyles.text}>Channel Name: {item.name}</Text>
-                <Text style={homeStyles.text}>Description: {item.description}</Text>
-                <Text style={homeStyles.text}>Followers: {item.followers}</Text>
-                <Text style={homeStyles.text}>Views: {item.views}</Text>
-                <Text style={[homeStyles.text, { color: 'blue' }]}
-                  onPress={() => Linking.openURL(item.url)}>
-                    Watch
-                </Text>
-                <Button 
-                  onPress={() => this.addNewChannelToFavorites({
-                    user: item.userID,
-                    channel: item.name,
-                    image: item.src,
-                    url: item.url
-                  })}
-                  title='Add To Favorites'
-                  color='#3399ff'
-                />
-              </View>
-            )}
+            keyExtractor={(item) => (item._id + '')}
+            renderItem={this.renderChannel}
           />
         </View>
       </TabsWrapper>

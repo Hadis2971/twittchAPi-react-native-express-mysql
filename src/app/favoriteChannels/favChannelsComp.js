@@ -1,13 +1,17 @@
 import React, { PureComponent } from 'react';
 import { View, Text, Image, TouchableOpacity, Linking, FlatList } from 'react-native';
+import ItemChannel from '../common/itemChannel';
+import Alert from '../common/alert';
 import favChannelStyles from '../../styles/favChannel';
 class FavChannelsComp extends PureComponent {
   constructor (props) {
     super(props);
     this.state = {
       listOfChannels: [],
-      offsetForLoadingFavChannels: 0
+      offsetForLoadingFavChannels: 0,
+      showAlert: false
     };
+    this.onEndReachedCalledDuringMomentum = true;
   }
 
   async componentDidMount () {
@@ -19,6 +23,14 @@ class FavChannelsComp extends PureComponent {
       listOfChannels: [...newChannels],
       offsetForLoadingFavChannels: (prevState.offsetForLoadingFavChannels + 5)
     }));
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.favChanneslError) {
+      this.setState({
+        showAlert: true
+      });
+    }
   }
 
   handleInfiniteScroll = async () => {
@@ -34,34 +46,59 @@ class FavChannelsComp extends PureComponent {
     }));
   };
 
+  renderListItem = ({ item }) => {
+    return (
+     <ItemChannel item={item}/>
+    );
+  };
+
+  renderSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: "100%",
+          backgroundColor: "#CED0CE",
+          marginBottom: '3%'
+        }}
+      />
+    );
+  };
+
+  hideMyAlert = () => {
+    this.setState({
+      showAlert: false
+    });
+  };
+
   render () {
-    const { listOfChannels } = this.state;
+    const { listOfChannels, showAlert } = this.state;
+    const { favChanneslError } = this.props;
+    
     return (
       <View style={favChannelStyles.container}>
-        <FlatList
+        <Alert 
+          showMyAlert={showAlert}
+          title='Error'
+          message={favChanneslError || 'Something Went Wrong Please Try Again'}
+          hideMyAlert={this.hideMyAlert}
+          confirmText='OK'
+          buttonColor='#DD6B55'
+        />
+        <FlatList 
           data={listOfChannels}
+          renderItem={this.renderListItem}
+          keyExtractor={(item) => (item.id + '')}
+          ItemSeparatorComponent={this.renderSeparator}
           onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
+          onEndReachedThreshold={0.5}
           onEndReached={async () => {
             if (!this.onEndReachedCalledDuringMomentum) {
               await this.handleInfiniteScroll();
               this.onEndReachedCalledDuringMomentum = true;
             }
           }}
-          onEndReachedThreshold={0}
-          keyExtractor={item => (item.id + '')}
-          renderItem={({ item }) => (
-            <View style={favChannelStyles.itemContainer}>
-              <Image source={{ uri: (item.image || 'http://textiletrends.in/gallery/1547020644No_Image_Available.jpg') }} style={favChannelStyles.imageStyle} />
-              <Text style={favChannelStyles.infoItem}>{item.channel}</Text>
-              <TouchableOpacity
-                onPress={() => Linking.openURL(item.url)}
-              >
-                <Text style={favChannelStyles.infoItem}>Watch</Text>
-              </TouchableOpacity>
-            </View>
-          )}
         />
-
       </View>
     );
   }

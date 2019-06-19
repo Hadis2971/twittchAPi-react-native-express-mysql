@@ -7,7 +7,6 @@ const SearchResultsGames = (props) => {
   return (
     <View style={homeStyles.container}>
       <FlatList
-        onEndReached={() => console.log('endEndendEnd')}
         data={streams}
         renderItem={({ item }) => (
           <View style={homeStyles.infoContainer}>

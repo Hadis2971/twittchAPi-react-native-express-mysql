@@ -13,17 +13,10 @@ class GamesComponent extends PureComponent {
         errors: false
       }
     }
-  
-    createGamesList = (games) => {
-      return games.map((game) => {
-        return {
-          key: game._id,
-          src: game.logo.small,
-          name: game.name,
-          popularity: game.popularity
-        }
-      });
-    }
+
+    renderGameItem = ({ item }) => {
+      return <Game item={item}/>
+    };
   
     componentWillReceiveProps(nextProps) {
       if (nextProps.gamesError) {
@@ -32,9 +25,9 @@ class GamesComponent extends PureComponent {
         });
         return;
       }
-      const gamesList = this.createGamesList(nextProps.games);
+      
       this.setState({
-        games: [...gamesList]
+        games: [...nextProps.games]
       });
     }
 
@@ -67,12 +60,8 @@ class GamesComponent extends PureComponent {
             <View style={homeStyles.resultsContainer}>
               <FlatList
                 data={games}
-                renderItem={({item}) => (
-                  <View style={homeStyles.infoContainer}>
-                    <Image source={{ uri: item.src }} style={{ width: 75, height: 75 }} />
-                    <Text style={homeStyles.text}>{`Game: ${item.name} Popularity: ${item.popularity}`}</Text>
-                  </View>
-                )}
+                keyExtractor={(item) => (item._id + '')}
+                renderItem={this.renderGameItem}
               />
             </View>
           </TabsWrapper>

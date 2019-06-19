@@ -14,19 +14,10 @@ class StreamsComponent extends PureComponent {
       }
     }
   
-    createStreamList = (streams) => {
-      return streams.map((stream) => {
-        return {
-          key: stream._id,
-          src: stream.channel.logo,
-          game: stream.channel.game,
-          name: stream.channel.name,
-          ln: stream.channel.broadcaster_language,
-          url: stream.channel.url
-        }
-      });
-    }
-  
+    renderStreamItem = ({ item }) => {
+      return <Stream item={item}/>
+    };
+
     hideAlert = () => {
       this.setState({
         errors: false
@@ -40,9 +31,9 @@ class StreamsComponent extends PureComponent {
         });
         return;
       }
-      const streamList = this.createStreamList(nextProps.streams);
+
       this.setState({
-        streams: [...streamList]
+        streams: [...nextProps.streams]
       });
     }
    
@@ -76,17 +67,8 @@ class StreamsComponent extends PureComponent {
               onEndReached={this.handleInfiniteScroll}
               onEndReachedThreshold={0}
               data={streams}
-              renderItem={({item}) => (
-                <View style={homeStyles.infoContainer}>
-                  <Image source={{ uri: item.src }} style={{ width: 75, height: 75 }} />
-                  <Text style={homeStyles.text}>{`Game: ${item.game} Language: ${item.ln}`}</Text>
-                  <Text style={homeStyles.text}>{`Channel: ${item.name}`}</Text>
-                  <Text style={[homeStyles.text, { color: 'blue' }]}
-                    onPress={() => Linking.openURL(item.url)}>
-                      Watch
-                  </Text>
-                </View>
-              )}
+              keyExtractor={(item) => (item._id + '')}
+              renderItem={this.renderStreamItem}
             />
           </View>
         </TabsWrapper>

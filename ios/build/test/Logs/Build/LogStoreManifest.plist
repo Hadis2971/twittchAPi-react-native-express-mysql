@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>41CE10C3-2BDF-487B-BB84-3C216D3F85FC</key>
+		<key>FD932468-10C8-4976-A401-24C1229EE7F0</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>41CE10C3-2BDF-487B-BB84-3C216D3F85FC.xcactivitylog</string>
+			<string>FD932468-10C8-4976-A401-24C1229EE7F0.xcactivitylog</string>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
@@ -30,45 +30,13 @@
 			<key>signature</key>
 			<string>Building project test with scheme test and configuration Debug</string>
 			<key>timeStartedRecording</key>
-			<real>582622706.88374996</real>
+			<real>582627224.97742403</real>
 			<key>timeStoppedRecording</key>
-			<real>582622708.78814304</real>
+			<real>582627226.78688502</real>
 			<key>title</key>
 			<string>Building project test with scheme test and configuration Debug</string>
 			<key>uniqueIdentifier</key>
-			<string>41CE10C3-2BDF-487B-BB84-3C216D3F85FC</string>
-		</dict>
-		<key>FC141FD6-F52C-4E4C-BD60-F8C24CBDBF8E</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>FC141FD6-F52C-4E4C-BD60-F8C24CBDBF8E.xcactivitylog</string>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>W</string>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>test project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>test</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Building project test with scheme test and configuration Debug</string>
-			<key>timeStartedRecording</key>
-			<real>582457519.39836204</real>
-			<key>timeStoppedRecording</key>
-			<real>582457522.48216796</real>
-			<key>title</key>
-			<string>Building project test with scheme test and configuration Debug</string>
-			<key>uniqueIdentifier</key>
-			<string>FC141FD6-F52C-4E4C-BD60-F8C24CBDBF8E</string>
+			<string>FD932468-10C8-4976-A401-24C1229EE7F0</string>
 		</dict>
 	</dict>
 </dict>

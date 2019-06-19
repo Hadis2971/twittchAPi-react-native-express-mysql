@@ -1,17 +1,13 @@
 import React from 'react';
 import { View, Image, Text } from 'react-native';
 import streamStyles from '../../../../styles/stream';
-
+import homeStyles from '../../../../styles/home';
 const Game = (props) => {
+  const { item } = props;
   return (
-    <View style={streamStyles.container}>
-      <View style={streamStyles.image}>
-        <Image source={{ uri: props.src }} />
-      </View>
-      <View style={streamStyles.info}>
-        <Text>Game: {props.name}</Text>
-        <Text>Popularity: {props.popularity}</Text>
-      </View>
+    <View style={homeStyles.infoContainer}>
+      <Image source={{ uri: item.logo.small }} style={{ width: 75, height: 75 }} />
+      <Text style={homeStyles.text}>{`Game: ${item.name} Popularity: ${item.popularity}`}</Text>
     </View>
   );
 };
