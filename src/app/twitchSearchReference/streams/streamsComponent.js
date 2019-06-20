@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import TabsWrapper from '../wrapper';
-import { View, Text, FlatList, Image, Linking } from 'react-native';
+import HOC from '../HOC';
+import { View, Text, FlatList, Image, Linking, Button } from 'react-native';
 import Stream from './stream';
 import homeStyles from '../../../styles/home';
 
@@ -9,48 +10,23 @@ class StreamsComponent extends PureComponent {
     constructor (props) {
       super(props);
       this.state = {
-        streams: [],
-        errors: false
+        streams: []
       }
     }
   
     renderStreamItem = ({ item }) => {
       return <Stream item={item}/>
     };
-
-    hideAlert = () => {
-      this.setState({
-        errors: false
-      });
-    };
-  
+    
     componentWillReceiveProps(nextProps) {
-      if (nextProps.streamsErrors) {
-        this.setState({
-          errors: true
-        });
-        return;
-      }
-
       this.setState({
         streams: [...nextProps.streams]
       });
     }
-   
-    submitSearchHandler = async ({ searchTerm }) => {
-      const { getStreams } = this.props.actions;
-      if (!searchTerm) return;
-      const path = `streams?query=${searchTerm}`;
-      await getStreams(path);
-    }
-  
-    handleInfiniteScroll = () => {
-      
-    };
 
     render () {
-      const { streams, errors } = this.state;
-      const { getStreamsStart, streamsErrors } = this.props;
+      const { streams } = this.state;
+      const { getStreamsStart, streamsErrors, errors, hideAlert, submitSearchHandler } = this.props;
       
       return (
         <TabsWrapper
@@ -59,8 +35,8 @@ class StreamsComponent extends PureComponent {
           alertTitle='Search For Streams Error'
           errorMsg={streamsErrors}
           searchTitle='Search For Streams'
-          submitSearchHandler={this.submitSearchHandler}
-          hideAlert={this.hideAlert}
+          submitSearchHandler={submitSearchHandler}
+          hideAlert={hideAlert}
         >
           <View style={homeStyles.resultsContainer}>
             <FlatList
@@ -71,9 +47,10 @@ class StreamsComponent extends PureComponent {
               renderItem={this.renderStreamItem}
             />
           </View>
+          
         </TabsWrapper>
       );
     }
   }
-  
-export default StreamsComponent;
+
+export default HOC(StreamsComponent, { type: 'streams' });

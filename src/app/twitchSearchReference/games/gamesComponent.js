@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import TabsWrapper from '../wrapper';
+import HOC from '../HOC';
 import { View, Text, FlatList, Image } from 'react-native';
 import Game from './game';
 import homeStyles from '../../../styles/home';
@@ -9,8 +10,7 @@ class GamesComponent extends PureComponent {
     constructor (props) {
       super(props);
       this.state = {
-        games: [],
-        errors: false
+        games: []
       }
     }
 
@@ -19,34 +19,14 @@ class GamesComponent extends PureComponent {
     };
   
     componentWillReceiveProps(nextProps) {
-      if (nextProps.gamesError) {
-        this.setState({
-          errors: true
-        });
-        return;
-      }
-      
       this.setState({
         games: [...nextProps.games]
       });
     }
 
-    hideAlert = () => {
-      this.setState({
-        errors: false
-      });
-    };
-   
-    submitSearchHandler = async ({ searchTerm }) => {
-      const { getGames } = this.props.actions;
-      if (!searchTerm) return;
-      const path = `games?query=${searchTerm}`;
-      await getGames(path);
-    }
-  
     render () {
-      const { games, errors } = this.state;
-      const { getGamesStart, gamesError } = this.props;
+      const { games } = this.state;
+      const { getGamesStart, gamesError, errors, hideAlert, submitSearchHandler } = this.props;
       return (
           <TabsWrapper
             errors={errors} 
@@ -54,8 +34,8 @@ class GamesComponent extends PureComponent {
             alertTitle='Search For Games Error'
             errorMsg={gamesError}
             searchTitle='Search For Games'
-            submitSearchHandler={this.submitSearchHandler}
-            hideAlert={this.hideAlert}
+            submitSearchHandler={submitSearchHandler}
+            hideAlert={hideAlert}
           >
             <View style={homeStyles.resultsContainer}>
               <FlatList
@@ -68,5 +48,5 @@ class GamesComponent extends PureComponent {
       );
     }
   }
-  
-export default GamesComponent;
+
+export default HOC(GamesComponent, { type: 'games' });

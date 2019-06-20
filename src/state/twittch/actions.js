@@ -5,7 +5,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 export const getStreams = (path) => async (dispatch) => {
   dispatch({ type: types.GET_STREAMS_START });
   const searchStremasResult = await twittchApis.get(path);
-  console.log(`inside getStreams => ${searchStremasResult.pagination}`);
   if ((!searchStremasResult) || (!searchStremasResult.data.streams.length)) {
     dispatch({
       type: types.GET_STREAMS_FAIL,

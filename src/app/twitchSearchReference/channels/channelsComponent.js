@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import TabsWrapper from '../wrapper';
+import HOC from '../HOC';
 import { View, Text, FlatList, Image, Linking, Button } from 'react-native';
 import Alert from '../../common/alert';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -14,7 +15,6 @@ class ChannelsComponent extends PureComponent {
     super(props);
     this.state = {
       channels: [],
-      errors: false,
       showMyAlert: false
     }
   }
@@ -42,31 +42,11 @@ class ChannelsComponent extends PureComponent {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.channelsError) {
-      this.setState({
-        errors: true
-      });
-      return;
-    }
-    
     this.setState({
       channels: [...nextProps.channels]
     });
   }
   
-  submitSearchHandler = async ({ searchTerm }) => {
-    const { getChannels } = this.props.actions;
-    if (!searchTerm) return;
-    const path = `channels?query=${searchTerm}`
-    await getChannels(path);
-  }
-
-  hideAlert = () => {
-    this.setState({
-      errors: false
-    });
-  };
-
   hideMyAlert = () => {
     this.setState({
       addChannelError: false
@@ -74,8 +54,14 @@ class ChannelsComponent extends PureComponent {
   };
 
   render () {
-    const { channels, errors, showMyAlert } = this.state;
-    const { getChannelsStart, channelsError, addChannelToFavoritesStart, addChannelError } = this.props;
+    const { channels, showMyAlert } = this.state;
+    const { getChannelsStart, 
+      channelsError, 
+      addChannelToFavoritesStart, 
+      addChannelError,
+      errors,
+      hideAlert,
+      submitSearchHandler } = this.props;
     
     return (
       <TabsWrapper 
@@ -84,8 +70,8 @@ class ChannelsComponent extends PureComponent {
         alertTitle='Search For Channels Error'
         errorMsg={channelsError}
         searchTitle='Search For Channels'
-        submitSearchHandler={this.submitSearchHandler}
-        hideAlert={this.hideAlert}
+        submitSearchHandler={submitSearchHandler}
+        hideAlert={hideAlert}
         >
         <View style={homeStyles.resultsContainer}>
         {addChannelError && <View style={alertStyle.container}>
@@ -113,5 +99,5 @@ class ChannelsComponent extends PureComponent {
     );
   }
 }
-  
-export default ChannelsComponent;
+
+export default HOC(ChannelsComponent, { type: 'channels' });
